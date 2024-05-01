@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="cadastroForm">
+        <h2>Cadastro</h2>
+        <input type="text" id="nome" placeholder="Nome">
+        <span id="nomeError" class="error"></span>
+        <input type="password" id="senha" placeholder="Senha">
+        <span id="senhaError" class="error"></span>
+        <input type="text" id="cpf_cnpj" placeholder="CPF ou CNPJ">
+        <span id="cpfCnpjError" class="error"></span>
+        <button type="button" onclick="validarCadastro()">Cadastrar</button>
+    </form>
+
+    <script>
+        function validarCadastro() {
+            var nome = document.getElementById('nome').value.trim();
+            var senha = document.getElementById('senha').value.trim();
+            var cpfCnpj = document.getElementById('cpf_cnpj').value.trim();
+            var nomeError = document.getElementById('nomeError');
+            var senhaError = document.getElementById('senhaError');
+            var cpfCnpjError = document.getElementById('cpfCnpjError');
+            var isValid = true;
+
+            // Validar Nome
+            if (nome === '') {
+                nomeError.textContent = 'Nome é obrigatório';
+                isValid = false;
+            } else {
+                nomeError.textContent = '';
+            }
+
+            // Validar Senha
+            if (senha === '') {
+                senhaError.textContent = 'Senha é obrigatória';
+                isValid = false;
+            } else {
+                senhaError.textContent = '';
+            }
+
+            // Validar CPF ou CNPJ
+            if (cpfCnpj === '') {
+                cpfCnpjError.textContent = 'CPF ou CNPJ é obrigatório';
+                isValid = false;
+            } else if (!validarCPF(cpfCnpj) && !validarCNPJ(cpfCnpj)) {
+                cpfCnpjError.textContent = 'CPF ou CNPJ inválido';
+                isValid = false;
+            } else {
+                cpfCnpjError.textContent = '';
+            }
+
+            if (isValid) {
+                // Aqui você pode enviar os dados do formulário para onde desejar
+                alert('Cadastro válido! Dados enviados: Nome: ' + nome + ', Senha: ' + senha + ', CPF ou CNPJ: ' + cpfCnpj);
+            }
+        }
+
+        // Função para validar CPF
+        function validarCPF(cpf) {
+            // Implemente sua lógica de validação de CPF aqui
+            return true; // Por enquanto retornando true para simplificar o exemplo
+        }
+
+        // Função para validar CNPJ
+        function validarCNPJ(cnpj) {
+            // Implemente sua lógica de validação de CNPJ aqui
+            return true; // Por enquanto retornando true para simplificar o exemplo
+        }
+    </script>
+</body>
+</html>
