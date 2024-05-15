@@ -6,21 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
   </head>
+
+  <script src="js/login.js"></script>
+ 
   <body>
     <h3>Login</h3>
     <form action="*" method="post">
       <div>
         <label for="text">Usuario: </label>
         <input type="text" id="txtUsuario" name="username" required />
+        <span id="nomeError" class="error"></span>
       </div>
       <div>
         <label for="password">Senha: </label>
         <input type="password" id="txtSenha" name="password" required />
+        <span id="senhaError" class="error"></span>
       </div>
+      
+    <div>
+      <label for="text">CPF: </label>
+      <input type="text" id="cpf">
+      <span id="cpfError" class="error"></span>
+    </div>
+    
       <div>
         <button><a href="forget.html">Esqueci a senha</a></button>
-        <button type="submit" id="btnEntrar">Entrar</button>
+        <button onclick="check()">Entrar</button>
       </div>
     </form>
+    
   </body>
 </html>
